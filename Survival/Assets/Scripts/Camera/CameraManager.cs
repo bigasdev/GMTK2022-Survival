@@ -13,10 +13,15 @@ public class CameraManager : MonoBehaviour
         }
     }
     [SerializeField] float cameraSpeed = 3f;
+    [SerializeField] Vector4 limit;
     public Entity currentEntity;
     Vector2 velocity;
     private void LateUpdate() {
+        
+    }
+    private void Update() {
         if(currentEntity == null)return;
         this.transform.position = Vector2.SmoothDamp(this.transform.position, currentEntity.currentPosition, ref velocity, cameraSpeed, 15f );
+        this.transform.position = new Vector2(Mathf.Clamp(this.transform.position.x,limit.x, limit.y), Mathf.Clamp(this.transform.position.y,limit.z, limit.w));
     }
 }

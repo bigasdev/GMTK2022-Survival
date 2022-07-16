@@ -47,6 +47,7 @@ public class EnviromentEntity : Entity
     }
     protected virtual void Desinfect(){
         Level.Instance.Desinfect(enviroments);
+        PoolsManager.Instance.GetPool("HitAnim").GetFromPool((Vector3)currentPosition);
     }
 }
 public enum Enviroments{

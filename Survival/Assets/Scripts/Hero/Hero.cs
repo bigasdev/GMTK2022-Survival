@@ -21,7 +21,7 @@ public class Hero : Entity
     int suitIndex = 1;
     public bool moving = false;
     public EnviromentEntity interactingWith = null;
-    Drone assignedDrone;
+    public Drone assignedDrone;
     protected override void OnSpawn()
     {
         base.OnSpawn();
@@ -37,6 +37,7 @@ public class Hero : Entity
         if(BGameInput.Instance.GetKeyPress("Interaction")){
             OnInteract();
         }
+        HandleArrow();
         var xy = BGameInput.Instance.GetAxis();
         moving = xy != Vector2.zero;
 
@@ -65,6 +66,19 @@ public class Hero : Entity
     }
     void HandleArrow(){
         var e = environments.Where(x => x.requiredSuit == currentNanosuit).FirstOrDefault();
+        if(e==null){
+            pointingArrow.gameObject.SetActive(false);
+            return;
+        }
+
+        var dir = (Vector2)e.pos.position - currentPosition;
+        if(dir.magnitude > 5){
+            pointingArrow.gameObject.SetActive(true);
+        }else{
+            pointingArrow.gameObject.SetActive(false);
+        }
+        var angle = Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg;
+        pointingArrow.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
 public enum Nanosuit{
