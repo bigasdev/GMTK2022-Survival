@@ -7,20 +7,18 @@ public class Drone : Entity
 {
     [SerializeField] float followingSpeed = 7f;
     Hero assignedHero;
-    GameObject dronePos;
     protected override void OnSpawn()
     {
         base.OnSpawn();
         cooldown.AddLoop(1.5f, Wander, this);
         assignedHero = TagQuery.FindObject("Hero").GetComponent<Hero>();
-        dronePos = TagQuery.FindObject("DronePos");
     }
     protected override void OnMove()
     {
         base.OnMove();
-        var d = Vector2.Distance(currentPosition, dronePos.transform.position);
+        var d = Vector2.Distance(currentPosition, assignedHero.dronePos.position);
         if(d > .35f){
-            currentPosition = Vector2.MoveTowards(currentPosition, dronePos.transform.position, followingSpeed*Time.deltaTime);
+            currentPosition = Vector2.MoveTowards(currentPosition, assignedHero.dronePos.position, followingSpeed*Time.deltaTime);
         }
     }
     void Wander(){

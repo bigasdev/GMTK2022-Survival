@@ -6,6 +6,7 @@ using BigasTools.InputSystem;
 
 public class Hero : Entity
 {
+    public Transform dronePos;
     public Nanosuit currentNanosuit = Nanosuit.Farmer;
     Nanosuit[] nanosuits = new Nanosuit[5]{
         Nanosuit.Farmer,
