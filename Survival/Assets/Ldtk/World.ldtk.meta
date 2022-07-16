@@ -8,7 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
-  _jsonFile: {instanceID: 0}
+  _jsonFile: {fileID: -164016180542632921, guid: c390bb083998b52488e0b2ba607a719f, type: 3}
   _pixelsPerUnit: 16
   _atlas: {instanceID: 0}
   _customLevelPrefab: {instanceID: 0}
@@ -17,7 +17,9 @@ ScriptedImporter:
   _useCompositeCollider: 1
   _createBackgroundColor: 1
   _intGridValues: []
-  _entities: []
+  _entities:
+  - _key: Grass
+    _asset: {fileID: 5088549363505039379, guid: f5389fb14c1fe384d9c92100a4dd4b2b, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
