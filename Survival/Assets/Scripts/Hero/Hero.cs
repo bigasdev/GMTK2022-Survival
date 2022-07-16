@@ -10,6 +10,7 @@ public class Hero : Entity
     public Transform dronePos;
     public Nanosuit currentNanosuit = Nanosuit.Farmer;
     [SerializeField] Transform pointingArrow;
+    [SerializeField] Animator animator;
     public List<EnvironmentHeroProfile> environments = new List<EnvironmentHeroProfile>();
     Nanosuit[] nanosuits = new Nanosuit[5]{
         Nanosuit.Farmer,
@@ -39,6 +40,10 @@ public class Hero : Entity
         }
         HandleArrow();
         var xy = BGameInput.Instance.GetAxis();
+        Debug.Log(xy);
+        dir = -(int)xy.x;
+        if(dir==0)dir=1;
+        HandleAnim(xy);
         moving = xy != Vector2.zero;
 
         this.transform.position += (Vector3)xy *moveSpeed* Time.deltaTime;
@@ -80,11 +85,17 @@ public class Hero : Entity
         var angle = Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg;
         pointingArrow.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
+    void HandleAnim(Vector2 xy){
+        animator.SetInteger("Nanosuit", (int)currentNanosuit);
+        animator.SetBool("WalkingUp", xy.y == 1 && xy.x == 0);
+        animator.SetBool("WalkingDown", xy.y == -1 && xy.x == 0);
+        animator.SetBool("WalkingSide", xy.x != 0);
+    }
 }
 public enum Nanosuit{
-    Farmer,
-    Air_Manager,
-    Wood_Cutter,
-    Slayer,
-    Fisherman
+    Farmer = 0,
+    Air_Manager = 1,
+    Wood_Cutter = 2,
+    Slayer = 3,
+    Fisherman = 4
 }

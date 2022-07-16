@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using BigasMath;
+using BigasTools;
 using System.Globalization;
 public class Level : MonoBehaviour
 {
@@ -16,6 +17,13 @@ public class Level : MonoBehaviour
     }
     public List<UIData> uIDatas = new List<UIData>();
     public List<LevelData> datas = new List<LevelData>();
+    [SerializeField] int npcsAmount = 5;
+    private void Start() {
+        for (int i = 0; i < npcsAmount; i++)
+        {
+            PoolsManager.Instance.GetPool("Npc").GetFromPool(new Vector3(Random.Range(CameraManager.Instance.limit.x + 2, CameraManager.Instance.limit.y - 2), Random.Range(CameraManager.Instance.limit.z + 2, CameraManager.Instance.limit.w - 2)));
+        }
+    }
     public void AddData(LevelData levelData){
         datas.Add(levelData);
     }

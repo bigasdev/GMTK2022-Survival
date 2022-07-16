@@ -13,7 +13,7 @@ public class CameraManager : MonoBehaviour
         }
     }
     [SerializeField] float cameraSpeed = 3f;
-    [SerializeField] Vector4 limit;
+    public Vector4 limit;
     public Entity currentEntity;
     Vector2 velocity;
     private void LateUpdate() {
