@@ -15,6 +15,8 @@ public class Hero : Entity
         Nanosuit.Fisherman
     };
     int suitIndex = 0;
+    public bool moving = false;
+    Drone assignedDrone;
     protected override void OnSpawn()
     {
         base.OnSpawn();
@@ -22,11 +24,13 @@ public class Hero : Entity
             ChangeSuit();
         }, this);
         CameraManager.Instance.currentEntity = this;
+        assignedDrone = TagQuery.FindObject("Drone").GetComponent<Drone>();
     }
     protected override void OnMove()
     {
         base.OnMove();
         var xy = BGameInput.Instance.GetAxis();
+        moving = xy != Vector2.zero;
 
         this.transform.position += (Vector3)xy *moveSpeed* Time.deltaTime;
     }
@@ -35,8 +39,8 @@ public class Hero : Entity
         suitIndex++;
         if(suitIndex >= nanosuits.Length)suitIndex = 0;
 
-        Talk(new BigasTools.UI.TextData($"Changing suit to... {s}"), new BigasTools.UI.TextRenderSettings(Color.white, 32), new BigasTools.UI.TextSpeedSettings(.02f, 2f, 3f));
-        squashY = .7f;
+        assignedDrone.Talk(new BigasTools.UI.TextData($"Changing suit to... {s}"), new BigasTools.UI.TextRenderSettings(Color.white, 32), new BigasTools.UI.TextSpeedSettings(.02f, 2f, 3f));
+        assignedDrone.squashY = .7f;
         Blink(.25f, 3, Color.green);
     }
 }
