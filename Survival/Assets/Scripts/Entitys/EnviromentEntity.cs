@@ -7,15 +7,21 @@ public class EnviromentEntity : Entity
     [SerializeField] protected bool isMother;
     [SerializeField] protected bool isInfected = false;
     public Nanosuit requiredSuit;
+    public Enviroments enviroments;
     public List<EnviromentEntity> childs;
     protected Hero assignedHero;
+    
     protected override void OnSpawn()
     {
         base.OnSpawn();
         assignedHero = FindObjectOfType<Hero>();
         if(isMother){
-            assignedHero.environments.Add(new EnvironmentHeroProfile(requiredSuit, this, this.transform));
+            
         }
+    }
+    protected void Initialize(){
+        Level.Instance.AddData(new LevelData(enviroments, this));
+        assignedHero.environments.Add(new EnvironmentHeroProfile(requiredSuit, this, this.transform));
     }
     protected override void OnMove()
     {
@@ -36,6 +42,20 @@ public class EnviromentEntity : Entity
     protected virtual void OnClose(){
 
     }
+    protected virtual void Infect(){
+        Level.Instance.Infect(enviroments);
+    }
+    protected virtual void Desinfect(){
+        Level.Instance.Desinfect(enviroments);
+    }
+}
+public enum Enviroments{
+    GRASS,
+    AIR,
+    PLANT,
+    COCOON,
+    ENTITY,
+    Water
 }
 [System.Serializable]
 public class EnvironmentHeroProfile{

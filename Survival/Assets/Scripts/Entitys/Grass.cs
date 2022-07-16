@@ -14,14 +14,14 @@ public class Grass : EnviromentEntity
     bool wasRaked = false;
     protected override void OnSpawn()
     {
-        base.OnSpawn();
         var f = GetComponent<LDtkFields>();
         isMother = f.GetBool("isMother");
+        base.OnSpawn();
         if(isMother){
             spriteRenderer.sprite = infectedGrass;
             var c = FindObjectsOfType<Grass>();
             childs = new List<EnviromentEntity>(c);
-            cooldown.AddLoop(5, ()=>{
+            cooldown.AddLoop(5f, ()=>{
                 var rnd = Random.Range(0,childs.Count);
                 var r = childs[rnd] as Grass;
                 squashX = .52f;
@@ -29,6 +29,7 @@ public class Grass : EnviromentEntity
                 r.Infect();
                 childs.Remove(r);
             });
+            Initialize();
         }
     }
     protected override void OnMove()
@@ -57,11 +58,13 @@ public class Grass : EnviromentEntity
         wasRaked = true;
         rakingAmt += rakingModifier * Time.deltaTime;
     }
-    public void Infect(){
+    protected override void Infect(){
+        base.Infect();
         spriteRenderer.sprite = infectedGrass;
         isInfected = true;
     }
-    public void Desinfect(){
+    protected override void Desinfect(){
+        base.Desinfect();
         spriteRenderer.sprite = normalGrass;
         Blink(.25f, 4, Color.green);
         isInfected = false;
