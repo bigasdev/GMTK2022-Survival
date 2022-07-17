@@ -34,13 +34,13 @@ public class Hero : Entity
     }
     protected override void OnMove()
     {
+        if(stateController.currentState!=States.GAME_UPDATE)return;
         base.OnMove();
         if(BGameInput.Instance.GetKeyPress("Interaction")){
             OnInteract();
         }
         HandleArrow();
         var xy = BGameInput.Instance.GetAxis();
-        Debug.Log(xy);
         dir = -(int)xy.x;
         if(dir==0)dir=1;
         HandleAnim(xy);

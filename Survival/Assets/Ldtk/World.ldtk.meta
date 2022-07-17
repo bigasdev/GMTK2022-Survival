@@ -20,6 +20,8 @@ ScriptedImporter:
   _entities:
   - _key: Grass
     _asset: {fileID: 5088549363505039379, guid: f5389fb14c1fe384d9c92100a4dd4b2b, type: 3}
+  - _key: Cocoon
+    _asset: {fileID: 368956961199659774, guid: 9842e39fa3c3a9c49bed5992448aaac8, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 

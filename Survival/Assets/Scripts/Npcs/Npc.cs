@@ -16,7 +16,6 @@ public class Npc : Entity
         MoveTo(p);
     }
     void OnScream(){
-        Talk(new BigasTools.UI.TextData($"Heeelppp!!!!!!!!"), new BigasTools.UI.TextRenderSettings(Color.red, 32), new BigasTools.UI.TextSpeedSettings(.02f, 1f, 5f));
         squashX = .525f;
     }
 }

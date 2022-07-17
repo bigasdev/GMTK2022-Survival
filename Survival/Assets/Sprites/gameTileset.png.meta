@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: a9bbf5d9315d6ba4bb1d21bc51dab43b
+guid: d4e2b07c02603654baa754cfdb790ca1
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 257620165447362078
-    second: startoflevel_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -116,28 +113,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: startoflevel_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 50
-        width: 106
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e16a770fc20439300800000000000000
-      internalID: 257620165447362078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
